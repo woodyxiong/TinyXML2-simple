@@ -33,6 +33,7 @@ Simplexml* Simplexml::next(char* name,int num){
         if(elename.compare(name)==0){
             if(i==num){
                 this->simpleEle=next;
+                this->_simpleEle=next;
                 break;
             }
             i++;
@@ -78,10 +79,9 @@ Simplexml* Simplexml::child(char* name,int num){
  * @return
  */
 const char* Simplexml::text(){
-    if(_simpleEle->GetText()==NULL){
-
-    }
-    return _simpleEle->GetText();
+    const char* text=_simpleEle->GetText();
+    this->back();
+    return text;
 }
 
 /**
@@ -92,6 +92,49 @@ const char* Simplexml::name(){
     const char* name=_simpleEle->Name();
     this->back();
     return name;
+}
+
+/**
+ * 设置text
+ * @param text
+ */
+void Simplexml::text(const char* text){
+    _simpleEle->SetText(text);
+    back();
+}
+
+/**
+ * 设置name
+ * @param name
+ */
+void Simplexml::name(const char* name){
+    _simpleEle->SetName(name);
+    back();
+}
+
+/**
+ * 读取属性值
+ * @param name
+ * @return
+ */
+const char* Simplexml::attr(const char *key){
+    const char* name=_simpleEle->Attribute(key);
+    this->back();
+    return name;
+}
+
+/**
+ * 设置属性值,后者为NULL即为删除属性
+ * @param key
+ * @param value
+ */
+void Simplexml::attr(const char* key,const char* value){
+    if(value==NULL){
+        _simpleEle->DeleteAttribute(key);
+    }else{
+        _simpleEle->SetAttribute(key,value);
+        this->back();
+    }
 }
 
 
@@ -108,6 +151,7 @@ void Simplexml::save(){
 }
 
 /**
+ *
  * 保存xml，带参，另存为
  * @param path
  */

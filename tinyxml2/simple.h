@@ -15,8 +15,19 @@ public:
     Simplexml* child(char* name,int num=0);
 
     //子节点操作
+    //name
 	const char* text();
-	const char* name();
+    void text(const char* text);
+    //name
+    const char *name();
+    void name(const char* name);
+    //attribute 增删改查
+    const char* attr(const char *key);
+    void attr(const char* key,const char* value);
+
+    //增加节点
+
+    //删除节点
 
     //保存xml
     void save();

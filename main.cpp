@@ -31,5 +31,6 @@ void parseTinyXML(){
 
 void parseSimple(){
 	Simplexml* simplexml=new Simplexml(xmlpath);
-    cout<<simplexml->child("user").text();
+    cout<<simplexml->child("user",1)->child("email")->text();
+//    cout<<simplexml->child("user",2).text();
 }

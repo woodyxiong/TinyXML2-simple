@@ -16,53 +16,104 @@ Simplexml::Simplexml(const char* xmlpath){
     simpleDoc=new XMLDocument();
     simpleDoc->LoadFile(xmlpath);
     simpleEle=simpleDoc->RootElement();
+    _simpleEle=simpleEle;
+}
 
-    //赋值给simpleElename
-    int size=sizeof(simpleEle->Name());
-    simpleElename = new char[++size];
-    strcpy(simpleElename,simpleEle->Name());
+/**
+ * 返回下一个节点
+ * @param name 节点名称
+ * @param num 第num个几点，从0开始计算(默认参数)
+ * @return
+ */
+Simplexml* Simplexml::next(char* name,int num){
+    XMLElement *next=simpleEle->FirstChildElement(name);
+    int i=0;
+    while(next){
+        string elename=next->Name();
+        if(elename.compare(name)==0){
+            if(i==num){
+                this->simpleEle=next;
+                break;
+            }
+            i++;
+        }
+        next=next->NextSiblingElement();
+    }
+    return this;
+}
+
+/**
+ * 回到实际节点
+ * _simpleEle回到simpleEle
+ */
+void Simplexml::back() {
+    _simpleEle=simpleEle;
+}
+
+/**
+ * 返回下一个节点
+ * @param name 节点名称
+ * @param num 第num个几点，从0开始计算(默认参数)
+ * @return
+ */
+Simplexml* Simplexml::child(char* name,int num){
+    XMLElement *next=_simpleEle->FirstChildElement(name);
+    int i=0;
+    while(next){
+        string elename=next->Name();
+        if(elename.compare(name)==0){
+            if(i==num){
+                _simpleEle=next;
+                break;
+            }
+            i++;
+        }
+        next=next->NextSiblingElement();
+    }
+    return this;
 }
 
 /**
  * 获得元素的text
  * @return
  */
-const char* Simplexml::text() const {
-    if(simpleEle->GetText()==NULL){
-        cout<<simpleElename<<" text is null";
+const char* Simplexml::text(){
+    if(_simpleEle->GetText()==NULL){
+
     }
-    return simpleEle->GetText();
+    return _simpleEle->GetText();
 }
 
 /**
  * 获取元素的name
  * @return
  */
-const char* Simplexml::name() const{
-    if(simpleEle->Name()==NULL){
-        cout<<simpleElename<<" name is null";
-    }
-    return simpleEle->Name();
+const char* Simplexml::name(){
+    const char* name=_simpleEle->Name();
+    this->back();
+    return name;
+}
+
+
+
+
+
+
+
+/**
+ * 保存xml，不带参，直接保存原地址
+ */
+void Simplexml::save(){
+    simpleDoc->SaveFile(xmlpath);
 }
 
 /**
- * 下一个子节点
- * @param name
- * @return Simplexml
+ * 保存xml，带参，另存为
+ * @param path
  */
-Simplexml Simplexml::child(char* name){
-    XMLElement *next=simpleEle->FirstChildElement("user");
-    while(next){
-        string elename=next->Name();
-        if(elename.compare(name)==0){
-            simpleEle=next;
-            break;
-        }
-        next=next->NextSiblingElement();
-    }
-    return *this;
+void Simplexml::save(char* path){
+    simpleDoc->SaveFile(path);
 }
-
 
 /**
  * 析构函数

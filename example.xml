@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <users>
-    <user>
-        wanger
-    </user>
+    <user>wanger</user>
     <user name="zhangsan" password ="123">
+        zhangsan
         <gender>male</gender>
         <mobile>3333333333</mobile>
         <email>zhangsan@gmail.com</email>
     </user>
     <user name="lisi" password ="1234">
+        lisi
         <gender>male</gender>
         <mobile>4444444444</mobile>
         <email>lise@gmail.com</email>

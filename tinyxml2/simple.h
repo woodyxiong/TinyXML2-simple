@@ -1,6 +1,5 @@
 #include "tinyxml2.h"
 using namespace tinyxml2;
-class Simplexml;
 class Simplexml{
 public:
     Simplexml(const char* xmlpath);
@@ -41,4 +40,3 @@ private:
     XMLElement *simpleEle;      //当前的xmlelement
     XMLElement *_simpleEle;     //当前操作的xmlelement
 };
- 

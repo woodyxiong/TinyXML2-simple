@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <users>
-    <user>wanger1</user>
-    <user>wanger2</user>
-    <user name="zhangsan" password="123" yanzhi="100">
+    <user>user0</user>
+    <user>user1</user>
+    <user password="123" yanzhi="100">
+        user2
         <gender>male</gender>
         <mobile>2222111</mobile>
         <email>zhangsan@gmail.com</email>
     </user>
-    <user name="lisi" password="1234">
+    <user>
+        user3
         <gender>male</gender>
-        <mobile>3333333333</mobile>
-        <email>lise@gmail.com</email>
+        <mobile type="tele">3333333333</mobile>
+        <email>lisi@gmail.com</email>
     </user>
 </users>

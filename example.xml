@@ -14,4 +14,10 @@
         <mobile type="tele">3333333333</mobile>
         <email>lisi@gmail.com</email>
     </user>
+    <user yanzhi="100">
+        user4
+        <gender>male</gender>
+        <mobile>11111111</mobile>
+        <email>wangwu@gmail.com</email>
+    </user>
 </users>

@@ -30,14 +30,12 @@ void parseTinyXML(){
 }
 
 void parseSimple(){
-    Simplexml* simplexml=new Simplexml(xmlpath);
-    cout<<simplexml->child("user",2)->attr("yanzhi")<<endl;
-    cout<<simplexml->child("user",3)->child("mobile")->attr("type")<<endl;
-    delete simplexml;
-//    cout<<simplexml->child("user")->text();
-//    simplexml->back();
-//    simplexml->child("user",2)->text(" ");
-//    cout<<simplexml->next("user",1)->child("mobile")->text()<<endl;
+    Simplexml* simplexml;
+    try {
+        simplexml=new Simplexml(xmlpath);
+    }catch(string e) {
+        cout<<e;
+    }
 
-//    simplexml->save();
+//    delete simplexml;
 }

@@ -14,7 +14,11 @@ Simplexml::Simplexml(const char* xmlpath){
 
     //初始化simpleDoc,simpleEle
     simpleDoc=new XMLDocument();
-    simpleDoc->LoadFile(xmlpath);
+    int status = simpleDoc->LoadFile(xmlpath);
+    if(status==3){
+        string str="can't find ";
+        throw str+xmlpath;
+    }
     simpleEle=simpleDoc->RootElement();
     _simpleEle=simpleEle;
 }

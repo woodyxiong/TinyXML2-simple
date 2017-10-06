@@ -83,3 +83,8 @@ void parseSimple(){
     delete simplexml;
 }
 ```
+
+## ToDoList
+- [ ] 增加删除节点，捕获链表异常
+- [ ] 更加灵活的类似foreach函数
+- [ ] 完善readme

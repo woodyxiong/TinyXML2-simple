@@ -1,17 +1,33 @@
 #include "tinyxml2.h"
 using namespace tinyxml2;
+class ListNode{
+//头指针移动的链表
+public:
+    XMLElement *element;
+    ListNode *next;
+    int deepth;
+    ~ListNode(){
+        //逐个销毁
+        if(next!=NULL){
+            delete next;
+            next=NULL;
+            std::cout<<"asdf"<<std::endl;
+        }
+    }
+};
 class Simplexml{
 public:
     Simplexml(const char* xmlpath);
     ~Simplexml();
 
-    //实际节点向下寻找
+    //头指针向下寻找
     Simplexml* next(char* name,int num=0);
-    //回到实际节点
+    void previous();
+    //将行为指针回到头指针
     void back();
 
     //运算子节点
-    Simplexml* child(char* name,int num=0);
+    Simplexml* child(const char* name,int num=0);
 
     //子节点操作
     //name
@@ -28,6 +44,9 @@ public:
 
     //删除节点
 
+    //获得当前节点的深度
+    int getDeepth();
+
     //保存xml
     void save();
     void save(char* path);
@@ -36,6 +55,8 @@ public:
 private:
     const char* xmlpath;        //xml路径
     XMLDocument *simpleDoc;     //文档树
+
+    ListNode *listNode;         //走过的路径
 
     XMLElement *simpleEle;      //当前的xmlelement
     XMLElement *_simpleEle;     //当前操作的xmlelement

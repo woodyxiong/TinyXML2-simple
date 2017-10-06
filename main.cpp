@@ -3,6 +3,7 @@
 using namespace std;
 using namespace tinyxml2;
 const char* xmlpath="example.xml";
+const char* xmlpathError="errorExample.xml";
 void parseTinyXML();
 void parseSimple();
 int main(){
@@ -30,12 +31,15 @@ void parseTinyXML(){
 }
 
 void parseSimple(){
-    Simplexml* simplexml;
     try {
-        simplexml=new Simplexml(xmlpath);
-    }catch(string e) {
-        cout<<e;
+        Simplexml* simplexml;
+        simplexml=new Simplexml(xmlpathError);
+        simplexml->next("node")->next("sdf");
+        simplexml->save();
+
+        delete simplexml;
+    }catch (string e){
+        cout<<e<<endl;
     }
 
-//    delete simplexml;
 }

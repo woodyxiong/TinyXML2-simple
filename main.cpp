@@ -21,20 +21,25 @@ void parseTinyXML(){
     XMLElement *root=doc->RootElement();
     XMLElement *user=root->FirstChildElement("user");
     while(user){
-        string elename=user->Name();
-        if(elename.compare("user")==0){
-            cout<<user->Name()<<endl;
+        string elename=user->GetText();
+        if(elename.compare("user0")==0){
+            cout<<user->GetText()<<endl;
+            root->DeleteChild(user);
             break;
         }
         user=user->NextSiblingElement();
     }
+    doc->SaveFile(xmlpath);
 }
 
 void parseSimple(){
     try {
         Simplexml* simplexml;
         simplexml=new Simplexml(xmlpathError);
-        simplexml->next("node")->next("sdf");
+//        simplexml->addNode("asdf");
+//        simplexml->child("asdf")->attr("123","123");
+        simplexml->child("asdf")->addNode("asdf");
+        simplexml->child("asdf")->child("asdf")->attr("123","123");
         simplexml->save();
 
         delete simplexml;

@@ -200,6 +200,45 @@ void Simplexml::attr(const char* key,const char* value){
 }
 
 /**
+ * 添加节点
+ * @param name 节点名称
+ */
+void Simplexml::addNode(const char* name){
+    XMLElement *node=simpleDoc->NewElement(name);
+    _simpleEle->InsertFirstChild(node);
+//    _simpleEle=NULL;
+//    int i=0;
+//    while(next){
+//        string elename=next->Name();
+//        if(elename.compare(name)==0){
+//            if(i==num){
+//                _simpleEle=next;
+//                break;
+//            }
+//            i++;
+//        }
+//        next=next->NextSiblingElement();
+//    }
+//    if(_simpleEle==NULL){
+//        //节点为空
+//        stringstream ss1;
+//        ss1<<num;
+//        string str2=ss1.str();
+//        string str="The ";
+//        throw str+name+"("+str2+") is NULL\n";
+//    }
+//    return this;
+}
+
+/**
+ * 删除节点
+ * @param name 节点名称
+ */
+void deleteNode(const char* name){
+
+}
+
+/**
  * 获得当前节点的深度
  * @return
  */

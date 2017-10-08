@@ -15,7 +15,7 @@ int main(){
 
 void parseTinyXML(){
     XMLDocument* doc=new XMLDocument;
-    int status=doc->LoadFile(xmlpath);
+    int status=doc->LoadFile(xmlpathError);
     if(status!=0)
         cout<<"open failed"<<endl;
     XMLElement *root=doc->RootElement();
@@ -23,28 +23,41 @@ void parseTinyXML(){
     while(user){
         string elename=user->GetText();
         if(elename.compare("user0")==0){
-            cout<<user->GetText()<<endl;
-            root->DeleteChild(user);
+            XMLElement *email=user->FirstChildElement("email");
+            while(email){
+                XMLElement *dizhi=doc->NewElement("dizhi");
+                email->InsertEndChild(dizhi);
+                email=email->NextSiblingElement();
+            }
             break;
         }
         user=user->NextSiblingElement();
     }
-    doc->SaveFile(xmlpath);
+    doc->SaveFile(xmlpathError);
 }
 
 void parseSimple(){
     try {
         Simplexml* simplexml;
         simplexml=new Simplexml(xmlpathError);
-//        simplexml->addNode("asdf");
-//        simplexml->child("asdf")->attr("123","123");
-        simplexml->child("asdf")->addNode("asdf");
-        simplexml->child("asdf")->child("asdf")->attr("123","123");
-        simplexml->save();
+        cout<<"class1\n";
+        simplexml->next("class1");//将头指针向子节点移动
+        cout<<simplexml->child("student",0)->text()<<endl;
+        cout<<simplexml->child("student",1)->text()<<endl;
+        cout<<simplexml->child("student",2)->text()<<endl;
+        cout<<simplexml->child("student",3)->text()<<endl;
+        cout<<simplexml->child("student",4)->text()<<endl;
 
+        cout<<"class2\n";
+        simplexml->previous();//将头指针向父节点移动
+        simplexml->next("class2");//将头指针向子节点移动
+        cout<<simplexml->child("student",0)->text()<<endl;
+        cout<<simplexml->child("student",1)->text()<<endl;
+        cout<<simplexml->child("student",2)->text()<<endl;
+        cout<<simplexml->child("student",3)->text()<<endl;
+        cout<<simplexml->child("student",4)->text()<<endl;
         delete simplexml;
     }catch (string e){
         cout<<e<<endl;
     }
-
 }

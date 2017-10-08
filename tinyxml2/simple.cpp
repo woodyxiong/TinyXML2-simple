@@ -203,39 +203,43 @@ void Simplexml::attr(const char* key,const char* value){
  * 添加节点
  * @param name 节点名称
  */
-void Simplexml::addNode(const char* name){
+void Simplexml::addNode(const char* name,bool isFirst){
     XMLElement *node=simpleDoc->NewElement(name);
-    _simpleEle->InsertFirstChild(node);
-//    _simpleEle=NULL;
-//    int i=0;
-//    while(next){
-//        string elename=next->Name();
-//        if(elename.compare(name)==0){
-//            if(i==num){
-//                _simpleEle=next;
-//                break;
-//            }
-//            i++;
-//        }
-//        next=next->NextSiblingElement();
-//    }
-//    if(_simpleEle==NULL){
-//        //节点为空
-//        stringstream ss1;
-//        ss1<<num;
-//        string str2=ss1.str();
-//        string str="The ";
-//        throw str+name+"("+str2+") is NULL\n";
-//    }
-//    return this;
+    if(isFirst)
+        _simpleEle->InsertFirstChild(node);
+    else
+        _simpleEle->InsertEndChild(node);
+    _simpleEle=simpleEle;
 }
 
 /**
  * 删除节点
  * @param name 节点名称
  */
-void deleteNode(const char* name){
-
+void Simplexml::deleteNode(const char* name,int num){
+    XMLElement *next=_simpleEle->FirstChildElement(name);
+    bool isFound=false;
+    int i=0;
+    while(next){
+        string elename=next->Name();
+        if(elename.compare(name)==0){
+            if(i==num){
+                isFound=true;
+                _simpleEle->DeleteChild(next);
+                break;
+            }
+            i++;
+        }
+        next=next->NextSiblingElement();
+    }
+    if(!isFound){
+        //节点为空
+        stringstream ss1;
+        ss1<<num;
+        string str2=ss1.str();
+        string str="The ";
+        throw str+name+"("+str2+") is NULL\n";
+    }
 }
 
 /**

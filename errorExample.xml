@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<root>
-    <asdf 123="123"/>
-    <node/>
-</root>
+<school>
+    <class1>
+        <student>stu0</student>
+        <student>stu1</student>
+        <student>stu2</student>
+        <student>stu3</student>
+        <student>stu4</student>
+    </class1>
+    <class2>
+        <student>stu0</student>
+        <student>stu1</student>
+        <student>stu2</student>
+        <student>stu3</student>
+        <student>stu4</student>
+    </class2>
+</school>

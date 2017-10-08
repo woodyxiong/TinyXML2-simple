@@ -41,9 +41,9 @@ public:
     void attr(const char* key,const char* value);
 
     //增加节点
-    void addNode(const char* name);
+    void addNode(const char* name,bool isFirst=true);
     //删除节点
-    void deleteNode(const char* name);
+    void deleteNode(const char* name,int num=0);
 
     //获得当前节点的深度
     int getDeepth();

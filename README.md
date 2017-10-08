@@ -129,7 +129,7 @@ void parseSimple(){
 void parseSimple(){
     try {
         Simplexml* simplexml;
-        simplexml=new Simplexml(xmlpathError);
+        simplexml=new Simplexml("example1.xml");
         cout<<"class1\n";
         cout<<simplexml->child("class1")->child("student",0)->text()<<endl;
         cout<<simplexml->child("class1")->child("student",1)->text()<<endl;
@@ -154,7 +154,7 @@ void parseSimple(){
 void parseSimple(){
     try {
         Simplexml* simplexml;
-        simplexml=new Simplexml(xmlpathError);
+        simplexml=new Simplexml("example1.xml");
         cout<<"class1\n";
         simplexml->next("class1");//将头指针向子节点移动
         cout<<simplexml->child("student",0)->text()<<endl;

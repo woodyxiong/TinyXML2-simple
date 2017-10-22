@@ -11,7 +11,6 @@ public:
         if(next!=NULL){
             delete next;
             next=NULL;
-            std::cout<<"asdf"<<std::endl;
         }
     }
 };

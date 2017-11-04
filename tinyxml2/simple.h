@@ -1,18 +1,13 @@
 #include "tinyxml2.h"
+#include <iostream>
 using namespace tinyxml2;
+using namespace std;
 class ListNode{
 //头指针移动的链表
 public:
     XMLElement *element;
     ListNode *next;
     int deepth;
-    ~ListNode(){
-        //逐个销毁
-        if(next!=NULL){
-            delete next;
-            next=NULL;
-        }
-    }
 };
 class Simplexml{
 public:
@@ -60,4 +55,6 @@ private:
 
     XMLElement *simpleEle;      //当前的xmlelement
     XMLElement *_simpleEle;     //当前操作的xmlelement
+
+    void deleteListnode();      //删除链表
 };

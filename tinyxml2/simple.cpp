@@ -1,8 +1,6 @@
-#include <iostream>
 #include <sstream>
 #include "simple.h"
 using namespace tinyxml2;
-using namespace std;
 
 /**
  * simplexml 构造函数
@@ -54,7 +52,7 @@ Simplexml* Simplexml::next(char* name,int num){
                 isFound=true;
                 this->simpleEle=next;
                 this->_simpleEle=next;
-                //链表重新赋值
+                //链表重新赋值/
                 ListNode *rootList=new ListNode;
                 rootList->element=simpleEle;
                 rootList->deepth=listNode->deepth+1;
@@ -278,11 +276,28 @@ void Simplexml::save(char* path){
 }
 
 /**
+ * 删除链表
+ */
+void Simplexml::deleteListnode(){
+    if(listNode){
+        ListNode* p=listNode->next;
+        while (p) {
+            ListNode* q=p;
+            p=p->next;
+            delete q;
+            q=NULL;
+        }
+        p=NULL;
+        delete listNode;
+    }
+}
+
+/**
  * 析构函数
  */
 Simplexml::~Simplexml(){
+    deleteListnode();       //删除链表
     delete simpleDoc;
-    delete listNode;
     simpleDoc=NULL;
     listNode=NULL;
 }
